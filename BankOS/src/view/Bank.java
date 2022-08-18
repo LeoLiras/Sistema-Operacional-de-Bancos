@@ -96,15 +96,75 @@ public class Bank {
 	}
 	
 	public static void saque() {
+		System.out.println("Efetuar saque: \n");
 		
+		System.out.println("Informe o número da conta: ");
+		int numero = Integer.parseInt(Bank.teclado.nextLine());
+		
+		Conta conta = Bank.buscarConta(numero);
+		
+		if(conta != null) {
+			System.out.println("Insira o valor do saque: ");
+			Double valor_saque = Bank.teclado.nextDouble();
+			
+			conta.sacar(valor_saque);
+		}else {
+			System.out.println("Conta não encontrada.");
+		}
+		
+		Utils.stop(2);
+		Bank.menu();
 	}
 	
 	public static void deposito() {
+		System.out.println("Efetuar depósito: \n");
 		
+		System.out.println("Insira o número da conta: ");
+		int numero = Integer.parseInt(Bank.teclado.nextLine());
+		
+		Conta conta = Bank.buscarConta(numero);
+		
+		if(conta != null) {
+			System.out.println("Insira o valor do depósito: ");
+			Double valor_deposito = Bank.teclado.nextDouble();
+			
+			conta.depositar(valor_deposito);
+		}else {
+			System.out.println("Conta não encontrada.");
+		}
+		
+		Utils.stop(2);
+		Bank.menu();
 	}
 	
 	public static void transferencia() {
+		System.out.println("Efetuar transferência: ");
 		
+		System.out.println("Informe o número da conta de origem: ");
+		int numero_origem = Integer.parseInt(Bank.teclado.nextLine());
+		
+		Conta conta_origem = Bank.buscarConta(numero_origem);
+		
+		if(conta_origem != null) {
+			System.out.println("Insira o número da conta de destino: ");
+			int numero_destino = Integer.parseInt(Bank.teclado.nextLine());
+			
+			Conta conta_destino = Bank.buscarConta(numero_destino);
+			
+			if(conta_destino != null) {
+				System.out.println("Insira o valor da transferência: ");
+				Double valor_transferencia = Bank.teclado.nextDouble();
+				
+				conta_origem.transferir(conta_destino, valor_transferencia);
+			}else {
+				System.out.println("Conta destino não encontrada.");
+			}
+		}else {
+			System.out.println("Conta origem não encontrada.");
+		}
+		
+		Utils.stop(2);
+		Bank.menu();
 	}
 	
 	public static void listarContas() {
