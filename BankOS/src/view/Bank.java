@@ -168,7 +168,33 @@ public class Bank {
 	}
 	
 	public static void listarContas() {
+		if(Bank.contas.size() > 0) {
+			System.out.println("Contas cadastradas: ");
+			
+			for(Conta conta : Bank.contas) {
+				System.out.println(conta);
+				System.out.println("====================================\n");
+			}
+		}else {
+			System.out.println("Não há contas cadastradas.");
+		}
 		
+		Utils.stop(1);
+		Bank.menu();
 	}
+	
+	private static Conta buscarConta(int numero_conta) {
 
+		if(Bank.contas.size() > 0) {
+			for(Conta conta : Bank.contas) {
+				if(conta.getNumero() == numero_conta) {
+					return conta;
+				}
+			}
+		}else {
+			System.out.println("Não há contas cadastradas.");
+		}
+		
+		return null;
+	}
 }
